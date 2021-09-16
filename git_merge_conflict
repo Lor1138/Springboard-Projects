@@ -1,0 +1,82 @@
+laura Desktop (master). >> cd merge_conflicts
+laura merge_conflicts (new_branch). >> git init
+Reinitialized existing Git repository in /Users/laura/Desktop/merge_conflicts/.git/
+laura merge_conflicts (new_branch). >> git config user.name "Laura"
+laura merge_conflicts (new_branch). >> ls
+first.txt  second.txt
+laura merge_conflicts (new_branch). >> git branch
+  master
+* new_branch
+laura merge_conflicts (new_branch). >> git status
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> git commit -m "added first.txt"
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> git add first.txt
+laura merge_conflicts (new_branch). >> git commit -m "added first.txt"
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> git status
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> echo first_text > first.txt
+laura merge_conflicts (new_branch). >> git add first.txt
+laura merge_conflicts (new_branch). >> git status
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> git checkout -b new branch
+fatal: 'branch' is not a commit and a branch 'new' cannot be created from it
+laura merge_conflicts (new_branch). >> git branch
+  master
+* new_branch
+laura merge_conflicts (new_branch). >> git checkout
+laura merge_conflicts (new_branch). >> git log --online
+fatal: unrecognized argument: --online
+laura merge_conflicts (new_branch). >> git log --oneline
+f57b641 (HEAD -> new_branch) first commit
+d409b76 (master) first commit
+laura merge_conflicts (new_branch). >> git merge new branch
+merge: new - not something we can merge
+laura merge_conflicts (new_branch). >> git merge new_branch
+Already up to date.
+laura merge_conflicts (new_branch). >> git checkout -b main
+Switched to a new branch 'main'
+laura merge_conflicts (main). >> git checkout -b new_branch
+fatal: A branch named 'new_branch' already exists.
+laura merge_conflicts (main). >> git checkout new_branch
+Switched to branch 'new_branch'
+laura merge_conflicts (new_branch). >> git status
+On branch new_branch
+nothing to commit, working tree clean
+laura merge_conflicts (new_branch). >> ls
+first.txt  second.txt
+laura merge_conflicts (new_branch). >> git checkout -b main
+fatal: A branch named 'main' already exists.
+laura merge_conflicts (new_branch). >> git checkout main
+Switched to branch 'main'
+laura merge_conflicts (main). >> echo second_text > second.txt
+laura merge_conflicts (main). >> git add .
+laura merge_conflicts (main). >> git commit -m "adding second.txt to new branch"
+On branch main
+nothing to commit, working tree clean
+laura merge_conflicts (main). >> git checkout master
+Switched to branch 'master'
+laura merge_conflicts (master). >> ls
+first.txt
+laura merge_conflicts (master). >> echo another_thing > second.txt
+laura merge_conflicts (master). >> git checkout new_branch
+error: The following untracked working tree files would be overwritten by checkout:
+	second.txt
+Please move or remove them before you switch branches.
+Aborting
+laura merge_conflicts (master). >> git add .
+laura merge_conflicts (master). >> git commit -m "adding second.txt to something_else"
+[master cb6e562] adding second.txt to something_else
+ 1 file changed, 1 insertion(+)
+ create mode 100644 second.txt
+laura merge_conflicts (master). >> git merge new_branch
+CONFLICT (add/add): Merge conflict in second.txt
+Auto-merging second.txt
+Automatic merge failed; fix conflicts and then commit the result.
+laura merge_conflicts (master). >> 
