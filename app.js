@@ -8,23 +8,23 @@ const gifContainer = document.getElementById('gif-container')
 const inputData = searchInput.value;
 
 
-submitBtn.addEventListener('click', function(e){
+submitBtn.addEventListener('submit', async function(e){
     e.preventDefault();
-    fetchGif();
+    await fetchGif();
     searchInput.value = " ";
 });
 
 removeBtn.addEventListener('click', function(e){
-    e.preventDefault();
     $('img').remove();
 });
 
 async function fetchGif(){
-    try{
+    try {
         const res = await axios.get(`https://api.giphy.com/v1/gifs/search?&q=${inputData}&api_key=I9k7dN8ybyxlyER5yc30YYTvNskJ2HAm`);
-        const random = Math.random(Math.floor() * res.data.length)
-        const urlGif = res.data.data[random].images.downsized.url;
-        createGif();
+        const data = res.data.data;
+        const index = Math.random(Math.floor() * data.length)
+        const url = res.data[index].images.downsized.url;
+        createGif(url);
     }
     catch (e) {
         alert("No results, try another search term")
@@ -33,7 +33,7 @@ async function fetchGif(){
 
 function createGif(url){
     const createImg = document.createElement('img');
-    createImg.setAtttribute('src', urlGif);
-    gifContainer.append(createImg);
+    createImg.src = url;
+    gifContainer.appendChild(createImg);
 };
 
